@@ -3,25 +3,123 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Ctfastrak Route Maps</title>
+    <title>eCtfast Stops</title>
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
+           
+	#navigation
+{
+    height: 42px;
+    border: 3px solid #E3E3E3;
+    margin-top: 1px;
+   text-shadow: 0.1em 0.1em #333;
+   background-color:#4e9d3e;
+     
+}
+
+#nav
+{
+    list-style: none;
+}
+
+#nav ul
+{
+    margin: 0;
+    padding: 0;
+    width: auto;
+    display: none;
+}
+
+#nav li
+{
+    font-size: 21px;
+    float:right;
+    position: fix;
+    width: 220px;
+    height: 35px;
+	 
+}
+
+#nav a:link, nav a:active, nav a:visited
+{
+    display: block;
+    color: #fff;
+	text-align: left;   
+    text-decoration: none;
+}
+
+#nav a:hover
+{
+    color: Black;
+}
+
+#map {
+        height: 91%;
+        float: right;
+        width: 100%;
+         
       }
-      /* Optional: Makes the sample page fill the window. */
+
+	 #left-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-right: 10px;
+      }
+
+      #left-panel select, #left-panel input {
+        font-size: 15px;
+      }
+
+      #left-panel select {
+        width: 100%;
+      }
+
+      #left-panel i {
+        font-size: 12px;
+      }
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
       }
+      
+      #left-panel {
+        margin: 20px;
+        border-width: 2px;
+        width: 20%;
+        height: 400px;
+        float: left;
+        text-align: left;
+        padding-top: 0;
+      }
+      #directions-panel {
+        margin-top: 10px;
+        background-color: #FFEE77;
+        padding: 10px;
+        overflow: scroll;
+        height: 174px;
+      }
+     
     </style>
   </head>
-  <body>
+     <body>
+   <nav id="navigation">
+                <ul id="nav">
+				<li><a href="index.php">Home</a></li>
+                <li><a href="routemap.php">Service Map</a></li>                  
+	            <li><a href="ptest.php">Route & Stops</a></li>
+		        <li><a href="rlist.php">Real-Time Stop Info</a></li>	    
+				<li><a href="markerbus.php">Real-Time Bus Info</a></li>
+		   	     <li><a href="planner.php">Trip Planner</a></li>	  
+				            
+			   </ul>
+            </nav>
+  
     <div id="map"></div>
-    <script>
+    
  
+    </style>
+   
+     <script>
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
             center: new google.maps.LatLng( 41.741192, -72.716437),
@@ -535,6 +633,7 @@ var route140f = new google.maps.Polyline({
 		//  var filepath='/ctfastrak/createXML153.php';
 		 // var filepath='/ctfastrak/createXML161.php';
 		  
+
           downloadUrl('/ctfastrak/createXML.php', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
@@ -594,11 +693,11 @@ var route140f = new google.maps.Polyline({
             });
           });
 		  
-
+  }
 		//test
 		
 		
-      }
+    
 	  function downloadUrl(url, callback) {
         var request = window.ActiveXObject ?
             new ActiveXObject('Microsoft.XMLHTTP') :
